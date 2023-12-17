@@ -2,6 +2,7 @@ package com.example.prakpm
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
@@ -10,7 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 object NetworkConfig {
-    fun getInterceptor() : OkHttpClient {
+    fun getInterceptor(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
@@ -21,7 +22,7 @@ object NetworkConfig {
         return okHttpClient
     }
 
-    //Retrofit
+    // Retrofit
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("http://10.2.2.2/server_api/index.api/ServerApi/")
@@ -34,23 +35,26 @@ object NetworkConfig {
 }
 
 interface StaffService {
-    // fungsi create data
+    // Fungsi create data
     @FormUrlEncoded
     @POST("addStaff")
-    fun addStaff(@Field("Name") name: String,
-                 @Field("Hp") hp: String,
-                 @Field("alamat") alamat: String) : Call<ResultStatus>
+    fun addStaff(
+        @Field("name") name: String,
+        @Field("hp") hp: String,
+        @Field("alamat") alamat: String
+    ): Call<ResultStatus>
 
-    // fungsi get data
+    // Fungsi get data
     @GET("getDataStaff")
-    fun getData() : Call<ResultStatus>
+    fun getData(): Call<ResultStatus>
 
-    // fungsi update data
+    // Fungsi update data
     @FormUrlEncoded
     @POST("updateStaff")
-    fun updateStaff(@Field("id") id: String,
-                    @Field("name") name: String,
-                    @Field("Hp") hp: String,
-                    @Field("alamat") alamat: String) : Call<ResultStatus>
-
+    fun updateStaff(
+        @Field("id") id: String,
+        @Field("name") name: String,
+        @Field("hp") hp: String,
+        @Field("alamat") alamat: String
+    ): Call<ResultStatus>
 }
