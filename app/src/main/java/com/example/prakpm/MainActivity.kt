@@ -1,15 +1,17 @@
 package com.example.prakpm
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.btnTambah
+import kotlinx.android.synthetic.main.activity_main.rvCategory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CrudView {
+    private lateinit var presenter: Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-<<<<<<< Updated upstream
-=======
-
         presenter = Presenter(this)
         presenter.getData()
 
@@ -50,6 +52,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSuccessAdd(msg: String) {
     }
 
+    override fun errorAdd(msg: String) {
+    }
+    
     override fun onErrorAdd(msg: String) {
     }
 
@@ -57,6 +62,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onErrorupdate(msg: String) {
->>>>>>> Stashed changes
     }
 }
