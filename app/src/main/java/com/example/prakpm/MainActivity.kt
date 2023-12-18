@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity(), CrudView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         presenter = Presenter(this)
         presenter.getData()
 
@@ -54,6 +53,9 @@ class MainActivity : AppCompatActivity(), CrudView {
     }
 
     override fun errorAdd(msg: String) {
+    }
+    
+    override fun onErrorAdd(msg: String) {
     }
 
     override fun onSuccessUpdate(msg: String) {

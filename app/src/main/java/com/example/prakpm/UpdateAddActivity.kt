@@ -1,6 +1,8 @@
 package com.example.prakpm
 
 import android.annotation.SuppressLint
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_update_add.btnAction
@@ -42,4 +44,26 @@ class UpdateAddActivity : AppCompatActivity(), CrudView {
             }
         }
     }
+
+    override fun onSuccessAdd(msg: String) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    override fun onErrorAdd(msg: String) {}
+
+    override fun onSuccessUpdate(msg: String) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    override fun onErrorupdate(msg: String) {}
+
+    override fun onSuccessGet(data: List<DataItem>?) {}
+
+    override fun onFailedGet(msg: String) {}
+
+    override fun onSuccessDelete(msg: String) {}
+
+    override fun onErrorDelete(msg: String) {}
 }

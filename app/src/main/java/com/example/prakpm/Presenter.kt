@@ -1,6 +1,8 @@
 package com.example.prakpm;
+
+import android.util.Log
 import retrofit2.Call
-import retrofit2.Response;
+import retrofit2.Response
 
 class Presenter(val crudView: MainActivity) {
     fun getData(){
@@ -11,22 +13,22 @@ class Presenter(val crudView: MainActivity) {
                     Log.d("Error", "Error Data")
                 }
                 override fun onResponse(call: Call<ResultStaff>, response: Response<ResultStaff>) {
-                    if (response.inSuccessful) {
+                    if (response.isSuccessful) {
                         val status = response.body()?.status
                         if(status == 200) {
-                            val data = response.body()>.staff
+                            val data = response.body().staff
                                     crudView.onSuccessGet(data)
                         } else {
-                            crudView.onFailedget("Error $status")
+                            crudView.onFailedGet("Error $status")
                         }
                     }
                 }
             });
     }
-    fun hapusData(id : String) {
+    fun hapusData(id: String?) {
         NetworkConfig.getService()
             .deleteStaff(id)
-            .enqueque(object : retrofit2.Callback<ResultStatus>{
+            .enqueue(object : retrofit2.Callback<ResultStatus>{
                 override fun onFailure(call : Call<ResultStatus>, t : Throwable) {
                     crudView.onErrorDelete(t.localizedMessage)
                 }
