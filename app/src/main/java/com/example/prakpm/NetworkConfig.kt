@@ -57,4 +57,9 @@ interface StaffService {
         @Field("hp") hp: String,
         @Field("alamat") alamat: String
     ): Call<ResultStatus>
+
+    //Fungsi hapus data
+    @FormUrlEncoded
+    @POST("deleteStaff")
+    fun deleteStaff(@Field("id") id: String?) : Call<ResultStatus>
 }

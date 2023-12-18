@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_data.view.*
 
-class DataAdapter (val data: List<DataItem>?, private val click: MyHolder.onClickItem) : RecyclerView.Adapter<DataAdapter.MyHolder>() {
+class DataAdapter (val data: List<DataItem>?, private val click: onClickItem) : RecyclerView.Adapter<DataAdapter.MyHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_data, parent, false)
         return MyHolder(view)
@@ -30,10 +30,10 @@ class DataAdapter (val data: List<DataItem>?, private val click: MyHolder.onClic
             itemView.tvPhone.text = get?.staffHp
             itemView.tvAddress.text = get?.staffAlamat
         }
+    }
 
-        interface onClickItem{
-            fun clicked (item: DataItem?)
-            fun delete (item: DataItem?)
-        }
+    interface onClickItem{
+        fun clicked (item: DataItem?)
+        fun delete (item: DataItem?)
     }
 }
