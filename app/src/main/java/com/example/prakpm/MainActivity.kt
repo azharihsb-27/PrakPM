@@ -4,29 +4,31 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.btnTambah
-import kotlinx.android.synthetic.main.activity_main.rvCategory
+import com.example.prakpm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), CrudView {
     private lateinit var presenter: Presenter
+    private lateinit var  binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         presenter = Presenter(this)
         presenter.getData()
 
-        btnTambah.setOnClickListener{
-            startActivity(Intent(applicationContext, UpdateAddActivity::class.java))
+        binding.btnTambah.setOnClickListener{
+            startActivity(Intent(applicationContext, ActivityUpdateAdd::class.java))
             finish()
         }
     }
 
     override fun onSuccessGet(data: List<DataItem>?) {
-        rvCategory.adapter = DataAdapter(data, object : DataAdapter.onClickItem {
+        binding.rvCategory.adapter = DataAdapter(data, object : DataAdapter.OnClickItem {
             override fun clicked(item:DataItem?) {
                 val bundle = Bundle()
                 bundle.putSerializable("dataItem", item)
-                val intent = Intent(applicationContext, UpdateAddActivity::class.java)
+                val intent = Intent(applicationContext, ActivityUpdateAdd::class.java)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity(), CrudView {
         })
     }
 
-    override fun onFailedGet(msg: String) {
+    override fun onErrorGet(msg: String) {
     }
 
     override fun onSuccessDelete(msg: String) {
@@ -46,21 +48,18 @@ class MainActivity : AppCompatActivity(), CrudView {
     }
 
     override fun onErrorDelete(msg: String) {
-        Toast.makeText(this, "Delete tidak berhasil", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Delete gagal", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccessAdd(msg: String) {
     }
 
-    override fun errorAdd(msg: String) {
-    }
-    
     override fun onErrorAdd(msg: String) {
     }
 
     override fun onSuccessUpdate(msg: String) {
     }
 
-    override fun onErrorupdate(msg: String) {
+    override fun onErrorUpdate(msg: String) {
     }
 }

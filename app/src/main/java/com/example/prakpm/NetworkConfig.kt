@@ -25,7 +25,7 @@ object NetworkConfig {
     // Retrofit
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://10.2.2.2/server_api/index.api/ServerApi/")
+            .baseUrl("http://127.0.0.1/server_api/index.api/ServerApi/")
             .client(getInterceptor())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -41,12 +41,12 @@ interface StaffService {
     fun addStaff(
         @Field("name") name: String,
         @Field("hp") hp: String,
-        @Field("alamat") alamat: String
+        @Field("address") address: String
     ): Call<ResultStatus>
 
     // Fungsi get data
     @GET("getDataStaff")
-    fun getData(): Call<ResultStatus>
+    fun getData(): Call<ResultStaff>
 
     // Fungsi update data
     @FormUrlEncoded
@@ -55,7 +55,7 @@ interface StaffService {
         @Field("id") id: String,
         @Field("name") name: String,
         @Field("hp") hp: String,
-        @Field("alamat") alamat: String
+        @Field("address") address: String
     ): Call<ResultStatus>
 
     //Fungsi hapus data

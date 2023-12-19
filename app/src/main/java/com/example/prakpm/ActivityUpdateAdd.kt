@@ -1,45 +1,44 @@
 package com.example.prakpm
 
 import android.annotation.SuppressLint
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_update_add.btnAction
-import kotlinx.android.synthetic.main.activity_update_add.etAddress
-import kotlinx.android.synthetic.main.activity_update_add.etName
+import com.example.prakpm.databinding.ActivityUpdateAddBinding
 
-@Suppress("SENSELESESS_COMPARISON")
-class UpdateAddActivity : AppCompatActivity(), CrudView {
+@Suppress("SENSELESS_COMPARISON")
+class ActivityUpdateAdd : AppCompatActivity(), CrudView {
     private lateinit var presenter: Presenter2
+    private lateinit var binding: ActivityUpdateAddBinding
     @SuppressLint("SexTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_add)
+        binding = ActivityUpdateAddBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         presenter = Presenter2(this)
         val itemDataItem = intent.getSerializableExtra("dataItem")
 
         if(itemDataItem == null) {
-            btnAction.text = "Tambah"
-            btnAction.setOnClickListener() {
+            binding.btnAction.text = "Tambah"
+            binding.btnAction.setOnClickListener {
                 presenter.addData(
-                    etName.text.toString(),
-                    etPhone.text.toString(),
-                    etAddress.text.toString())
+                    binding.etName.text.toString(),
+                    binding.etPhone.text.toString(),
+                    binding.etAddress.text.toString())
             }
-        }else if (itemDataItem != null){
-            btnAction.text = "Update"
+        } else if (itemDataItem != null){
+            binding.btnAction.text = "Update"
             val item = itemDataItem as DataItem?
-            etName.setText(item?.staffName.toString())
-            etPhone.setText(item?.staffHp.toString())
-            etAddress.setText(item?.staffAlamat.toString())
-            btnAction.setOnClickListener() {
+            binding.etName.setText(item?.staffName.toString())
+            binding.etPhone.setText(item?.staffHp.toString())
+            binding.etAddress.setText(item?.staffAddress.toString())
+            binding.btnAction.setOnClickListener {
                 presenter.updateData(
                     item?.staffId ?: "",
-                    etName.text.toString(),
-                    etPhone.text.toString(),
-                    etAddress.text.toString())
+                    binding.etName.text.toString(),
+                    binding.etPhone.text.toString(),
+                    binding.etAddress.text.toString())
                 finish()
             }
         }
@@ -57,11 +56,11 @@ class UpdateAddActivity : AppCompatActivity(), CrudView {
         finish()
     }
 
-    override fun onErrorupdate(msg: String) {}
+    override fun onErrorUpdate(msg: String) {}
 
     override fun onSuccessGet(data: List<DataItem>?) {}
 
-    override fun onFailedGet(msg: String) {}
+    override fun onErrorGet(msg: String) {}
 
     override fun onSuccessDelete(msg: String) {}
 

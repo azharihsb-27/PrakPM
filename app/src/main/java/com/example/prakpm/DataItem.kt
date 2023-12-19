@@ -13,6 +13,6 @@ class DataItem : Serializable {
     @field:SerializedName("staff_hp")
     val staffHp: String? = null
 
-    @field:SerializedName("staff_alamat")
-    val staffAlamat: String? = null
+    @field:SerializedName("staff_address")
+    val staffAddress: String? = null
 }

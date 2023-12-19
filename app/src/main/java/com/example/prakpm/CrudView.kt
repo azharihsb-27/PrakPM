@@ -3,7 +3,7 @@ package com.example.prakpm
 interface CrudView {
     //get data
     fun onSuccessGet(data : List<DataItem>?)
-    fun onFailedGet(msg : String)
+    fun onErrorGet(msg : String)
 
     //menambah data
     fun onSuccessAdd(msg : String)
@@ -11,7 +11,7 @@ interface CrudView {
 
     //update data
     fun onSuccessUpdate(msg : String)
-    fun onErrorupdate(msg : String)
+    fun onErrorUpdate(msg : String)
 
     //hapus data
     fun onSuccessDelete(msg : String)
