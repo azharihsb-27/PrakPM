@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.prakpm.databinding.ActivityUpdateAddBinding
 
 @Suppress("SENSELESS_COMPARISON")
@@ -22,6 +23,7 @@ class ActivityUpdateAdd : AppCompatActivity(), CrudView {
         if(itemDataItem == null) {
             binding.btnAction.text = "Tambah"
             binding.btnAction.setOnClickListener {
+                
                 presenter.addData(
                     binding.etName.text.toString(),
                     binding.etPhone.text.toString(),
