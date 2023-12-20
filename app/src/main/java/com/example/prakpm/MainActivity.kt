@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), CrudView {
         presenter.getData()
 
         binding.btnTambah.setOnClickListener{
+
             startActivity(Intent(applicationContext, ActivityUpdateAdd::class.java))
             finish()
         }

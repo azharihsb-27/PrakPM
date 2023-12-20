@@ -69,7 +69,7 @@
 		public function deleteStaff() {
 			// deklarasi variable
 			$id =$this->input->post('id');
-			$this->id->where('staff_id', $id);
+			$this->db->where('staff_id', $id);
 			$status = $this->db->delete('tb_staff');
 
 			if($status == true) {

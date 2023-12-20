@@ -40,4 +40,5 @@ class Presenter2 (val crudView: ActivityUpdateAdd) {
                 }
             })
     }
+
 }
